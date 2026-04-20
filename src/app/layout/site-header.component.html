@@ -1,0 +1,35 @@
+<header class="header" role="banner">
+  <div class="header__inner gc-container">
+    <a
+      class="header__brand"
+      routerLink="/"
+      aria-label="First Baptist Rogers — Asian American Congregation home"
+    >
+      <span class="header__title">First Baptist Rogers</span>
+      <span class="header__subtitle">Asian American Congregation</span>
+    </a>
+
+    <nav class="header__nav" aria-label="Main navigation">
+      <ul class="header__list">
+        @for (item of navItems; track item.path) {
+          <li class="header__item">
+            <a
+              class="header__link"
+              [routerLink]="item.path"
+              routerLinkActive="header__link--active"
+              [routerLinkActiveOptions]="{ exact: item.exact ?? false }"
+            >
+              <span class="header__label">{{ item.label }}</span>
+              <span class="header__dot" aria-hidden="true"></span>
+            </a>
+          </li>
+        }
+      </ul>
+    </nav>
+
+    <a routerLink="/about" class="gc-btn gc-btn--dark header__cta">
+      Plan a visit
+      <span class="gc-arrow" aria-hidden="true">&rarr;</span>
+    </a>
+  </div>
+</header>

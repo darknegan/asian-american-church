@@ -5,9 +5,13 @@
       "command": "npx",
       "args": ["-y", "@angular/cli", "mcp"]
     },
-    "primeng": {
+    "taiga-ui": {
       "command": "npx",
-      "args": ["-y", "@primeng/mcp"]
+      "args": [
+        "-y",
+        "@taiga-ui/mcp@latest",
+        "--source-url=https://taiga-ui.dev/llms-full.txt"
+      ]
     }
   }
 }

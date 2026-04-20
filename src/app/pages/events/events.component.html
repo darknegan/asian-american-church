@@ -1,0 +1,167 @@
+<article class="events">
+  <section class="hero" aria-labelledby="events-heading">
+    <div class="gc-container hero__grid">
+      <div class="hero__copy">
+        <p class="gc-eyebrow">What&rsquo;s happening</p>
+        <h1 id="events-heading" class="hero__title">Events &amp; gatherings</h1>
+        <p class="hero__lede">
+          Seasonal celebrations, formation classes, and city-facing outreaches — spaces to
+          belong, learn, and serve together.
+        </p>
+      </div>
+      <aside class="hero__month" aria-label="Month picker">
+        <button type="button" class="hero__nav" aria-label="Previous month">&larr;</button>
+        <div class="hero__month-label">
+          <p class="hero__month-name">March 2026</p>
+          <p class="hero__month-count">24 events this month</p>
+        </div>
+        <button type="button" class="hero__nav" aria-label="Next month">&rarr;</button>
+      </aside>
+    </div>
+  </section>
+
+  <section class="featured" aria-labelledby="featured-heading">
+    <div class="gc-container featured__inner">
+      <figure class="featured__media">
+        <img
+          [ngSrc]="featured.imageSrc"
+          width="1200"
+          height="900"
+          priority
+          [alt]="featured.alt"
+          class="featured__img"
+        />
+        <figcaption class="featured__featured-tag">
+          <span class="featured__dot" aria-hidden="true"></span>
+          Featured · {{ featured.category }}
+        </figcaption>
+      </figure>
+      <div class="featured__body">
+        <div class="featured__date">
+          <span class="featured__date-day">{{ featured.day }}</span>
+          <span class="featured__date-num">{{ featured.date }}</span>
+          <span class="featured__date-month">{{ featured.month }}</span>
+        </div>
+        <h2 id="featured-heading" class="featured__title">{{ featured.title }}</h2>
+        <dl class="featured__meta">
+          <div>
+            <dt>When</dt>
+            <dd>{{ featured.dateLabel }} · {{ featured.timeRange }}</dd>
+          </div>
+          <div>
+            <dt>Where</dt>
+            <dd>{{ featured.location }}</dd>
+          </div>
+        </dl>
+        <p class="featured__text">{{ featured.description }}</p>
+        <div class="featured__actions">
+          <a routerLink="/events" class="gc-btn gc-btn--dark">
+            RSVP &amp; details <span class="gc-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+          <a routerLink="/events" class="gc-btn gc-btn--ghost">Add to calendar</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="filter" aria-label="Event filters">
+    <div class="gc-container filter__inner">
+      <ul class="filter__list" role="tablist">
+        @for (f of filters(); track f.id) {
+          <li>
+            <button
+              type="button"
+              role="tab"
+              [attr.aria-selected]="activeFilter() === f.id"
+              class="filter__pill"
+              [class.filter__pill--active]="activeFilter() === f.id"
+              (click)="setFilter(f.id)"
+            >
+              {{ f.label }}
+              <span class="filter__count">{{ f.count }}</span>
+            </button>
+          </li>
+        }
+      </ul>
+      <div class="filter__sort">
+        <span class="filter__sort-label">Sort:</span>
+        <span class="filter__sort-value">Upcoming</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="timeline" aria-label="Event timeline">
+    <div class="gc-container">
+      @for (group of visibleGroups(); track group.label) {
+        <div class="group">
+          <header class="group__head">
+            <p class="group__label">{{ group.label }}</p>
+            <p class="group__range">{{ group.range }}</p>
+          </header>
+
+          <ul class="group__list">
+            @for (event of group.events; track event.id) {
+              <li class="event-card">
+                <div class="event-card__date">
+                  <span class="event-card__day">{{ event.day }}</span>
+                  <span class="event-card__num">{{ event.date }}</span>
+                  <span class="event-card__month">{{ event.month }}</span>
+                </div>
+
+                <figure class="event-card__thumb">
+                  <img
+                    [ngSrc]="event.imageSrc"
+                    width="300"
+                    height="300"
+                    [alt]="event.alt"
+                    class="event-card__img"
+                  />
+                </figure>
+
+                <div class="event-card__body">
+                  <div class="event-card__tags">
+                    <span [class]="categoryTagClass(event.category)">{{ event.category }}</span>
+                    <span class="event-card__meta">{{ event.timeRange }} · {{ event.location }}</span>
+                  </div>
+                  <h3 class="event-card__title">{{ event.title }}</h3>
+                  <p class="event-card__desc">{{ event.description }}</p>
+                </div>
+
+                <a routerLink="/events" class="event-card__btn">
+                  Details <span class="gc-arrow" aria-hidden="true">&rarr;</span>
+                </a>
+              </li>
+            }
+          </ul>
+        </div>
+      }
+
+      @if (visibleGroups().length === 0) {
+        <p class="timeline__empty">
+          No events in this category this month. Try another filter.
+        </p>
+      }
+
+      <div class="timeline__more">
+        <a routerLink="/events" class="gc-btn gc-btn--ghost">
+          View April events <span class="gc-arrow" aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="submit" aria-labelledby="submit-heading">
+    <div class="gc-container submit__inner">
+      <div>
+        <p class="gc-eyebrow">Get involved</p>
+        <h2 id="submit-heading" class="submit__title">Have an idea for a community event?</h2>
+        <p class="submit__body">
+          Tell us about it — from block parties to workshops, we love helping our members lead.
+        </p>
+      </div>
+      <a routerLink="/about" class="gc-btn gc-btn--dark submit__cta">
+        Propose an event <span class="gc-arrow" aria-hidden="true">&rarr;</span>
+      </a>
+    </div>
+  </section>
+</article>

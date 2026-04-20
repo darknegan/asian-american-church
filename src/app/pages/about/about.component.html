@@ -1,0 +1,233 @@
+<article class="about">
+  <section class="hero" aria-labelledby="about-heading">
+    <div class="gc-container hero__grid">
+      <div class="hero__copy">
+        <p class="gc-eyebrow">Our story</p>
+        <h1 id="about-heading" class="hero__title">
+          Rooted in Christ, shaped by our stories.
+        </h1>
+        <p class="hero__lede">
+          We are the Asian American Congregation of
+          <a href="https://www.fbcrogers.org/" rel="noopener noreferrer" class="hero__inline-link">First Baptist Rogers</a>
+          — a multi-generational family learning to follow Jesus with humility and joy. We honor Asian
+          heritage and American context together, sent with our whole church to make disciples of all
+          nations.
+        </p>
+        <dl class="hero__meta">
+          @for (m of meta; track m.label) {
+            <div class="hero__meta-item">
+              <dt>{{ m.label }}</dt>
+              <dd>{{ m.value }}</dd>
+            </div>
+          }
+        </dl>
+      </div>
+
+      <div class="hero__media">
+        <figure class="hero__primary">
+          <img
+            [ngSrc]="images.aboutGathering"
+            width="920"
+            height="1120"
+            priority
+            alt="First Baptist Rogers Asian American Congregation gathered during worship"
+            class="hero__primary-img"
+          />
+        </figure>
+        <figure class="hero__secondary">
+          <img
+            [ngSrc]="images.aboutLeadership"
+            width="520"
+            height="600"
+            alt="Pastors in conversation before a service"
+            class="hero__secondary-img"
+          />
+        </figure>
+        <div class="hero__badge" aria-hidden="true">
+          <span class="hero__badge-top">FIRST BAPTIST</span>
+          <span class="hero__badge-year">ROGERS</span>
+          <span class="hero__badge-tag">Asian American Congregation</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mission" aria-labelledby="mission-heading">
+    <div class="mission__orb mission__orb--teal" aria-hidden="true"></div>
+    <div class="mission__orb mission__orb--terracotta" aria-hidden="true"></div>
+
+    <div class="gc-container mission__inner">
+      <p class="gc-eyebrow mission__eyebrow">Mission</p>
+      <h2 id="mission-heading" class="mission__title">
+        One mission: making disciples of all the nations. We exist to glorify God by raising up
+        worshippers in spirit and truth, neighbors who love sacrificially, and witnesses who carry
+        the gospel across the street and around the world.
+      </h2>
+      <div class="mission__pillars">
+        @for (p of pillars; track p.title) {
+          <div class="mission__pillar">
+            <span class="mission__pillar-mark" aria-hidden="true"></span>
+            <h3 class="mission__pillar-title">{{ p.title }}</h3>
+            <p class="mission__pillar-body">{{ p.body }}</p>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="beliefs" aria-labelledby="beliefs-heading">
+    <div class="gc-container beliefs__inner">
+      <div class="beliefs__head">
+        <p class="gc-eyebrow">Foundations</p>
+        <h2 id="beliefs-heading" class="beliefs__title">About First Baptist Rogers</h2>
+        <p class="beliefs__intro">
+          First Baptist Rogers is affiliated with the
+          <strong>Southern Baptist Convention</strong> and affirms the
+          <strong>Baptist Faith and Message</strong> as a summary of our shared convictions. We
+          invite you to explore those foundations — including teaching on God, Jesus Christ, the Holy
+          Spirit, Scripture, salvation, the church, and Christian hope.
+        </p>
+        <a
+          href="https://www.fbcrogers.org/about"
+          class="gc-btn gc-btn--dark beliefs__link"
+          rel="noopener noreferrer"
+        >
+          Read more on fbcrogers.org
+          <span class="gc-arrow" aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="values" aria-labelledby="values-heading">
+    <div class="gc-container">
+      <div class="values__head">
+        <div>
+          <p class="gc-eyebrow">What we value</p>
+          <h2 id="values-heading" class="values__title">Six practices that shape our common life.</h2>
+        </div>
+        <p class="values__intro">
+          None of these are original to us — they are ancient rhythms we receive and attempt to
+          live out together.
+        </p>
+      </div>
+
+      <div class="values__grid">
+        @for (v of values; track v.num) {
+          <article class="value">
+            <div class="value__top">
+              <span class="value__num">{{ v.num }}</span>
+              <span class="value__dot" aria-hidden="true"></span>
+            </div>
+            <h3 class="value__title">{{ v.title }}</h3>
+            <p class="value__body">{{ v.body }}</p>
+          </article>
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="timeline" aria-labelledby="timeline-heading">
+    <div class="gc-container">
+      <div class="timeline__head">
+        <div>
+          <p class="gc-eyebrow">Our story</p>
+          <h2 id="timeline-heading" class="timeline__title">A long story of faithfulness.</h2>
+        </div>
+        <p class="timeline__intro">
+          Our congregation shares in the history of First Baptist Rogers — from a small gathering in
+          1883 to a multi-campus church family pointing every generation to Jesus.
+        </p>
+      </div>
+
+      <ol class="timeline__list">
+        @for (m of milestones; track m.year; let first = $first; let last = $last) {
+          <li class="timeline__item">
+            <div class="timeline__dotRow">
+              <span class="timeline__line" [class.timeline__line--hidden]="first" aria-hidden="true"></span>
+              <span class="timeline__pip" aria-hidden="true"></span>
+              <span class="timeline__line" [class.timeline__line--hidden]="last" aria-hidden="true"></span>
+            </div>
+            <p class="timeline__year">{{ m.year }}</p>
+            <p class="timeline__subtitle">{{ m.title }}</p>
+            <p class="timeline__body">{{ m.body }}</p>
+          </li>
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section class="leaders" aria-labelledby="leaders-heading">
+    <div class="gc-container">
+      <div class="leaders__head">
+        <div>
+          <p class="gc-eyebrow">Pastors &amp; elders</p>
+          <h2 id="leaders-heading" class="leaders__title">Shepherds who know your name.</h2>
+        </div>
+        <p class="leaders__intro">
+          Dr. Wes George serves as Senior Pastor of First Baptist Rogers. Our Asian American
+          Congregation is shepherded in partnership with the wider pastoral staff and elders.
+          <a href="https://www.fbcrogers.org/about" rel="noopener noreferrer" class="leaders__intro-link"
+            >Meet the full team on the church website</a
+          >.
+        </p>
+      </div>
+
+      <div class="leaders__grid">
+        @for (p of leaders; track p.name) {
+          <article class="leader">
+            <figure class="leader__figure">
+              <img
+                [ngSrc]="p.image"
+                width="640"
+                height="640"
+                [alt]="p.alt"
+                class="leader__img"
+              />
+            </figure>
+            <div class="leader__meta">
+              <h3 class="leader__name">{{ p.name }}</h3>
+              <p class="leader__role">{{ p.role }}</p>
+            </div>
+            <p class="leader__bio">{{ p.bio }}</p>
+            <p class="leader__tenure">{{ p.tenure }}</p>
+          </article>
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="closing" aria-labelledby="closing-heading">
+    <div class="gc-container closing__inner">
+      <div class="closing__copy">
+        <p class="gc-eyebrow">Come see us</p>
+        <h2 id="closing-heading" class="closing__title">We&rsquo;ll keep a seat warm for you.</h2>
+        <p class="closing__body">
+          Worship with us at the Olive Street campus — 626 W Olive Street, Rogers, AR 72756. Call
+          <a href="tel:+14796363451" class="closing__link">(479) 636-3451</a> or email
+          <a href="mailto:info@fbcrogers.org" class="closing__link">info&#64;fbcrogers.org</a>.
+          Service times and directions are on the main church site.
+        </p>
+        <div class="closing__actions">
+          <a
+            href="https://www.fbcrogers.org/"
+            class="gc-btn gc-btn--dark"
+            rel="noopener noreferrer"
+          >
+            Plan a visit <span class="gc-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+          <a routerLink="/events" class="gc-btn gc-btn--ghost">See events</a>
+        </div>
+      </div>
+      <figure class="closing__figure">
+        <img
+          [ngSrc]="images.welcome"
+          width="820"
+          height="640"
+          alt="Welcoming families at the doorway of the church"
+          class="closing__img"
+        />
+      </figure>
+    </div>
+  </section>
+</article>

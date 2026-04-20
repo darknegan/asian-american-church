@@ -1,1 +1,208 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global styles — design tokens mirror the Figma Tokens collection. */
+
+:root {
+  /* Brand palette */
+  --gc-ink-900: #0f1822;
+  --gc-ink-700: #1c2430;
+  --gc-ink-500: #3a4556;
+  --gc-ink-300: #6a7589;
+  --gc-paper-50: #fdfbf7;
+  --gc-paper-100: #f6f3ec;
+  --gc-paper-200: #ece6d8;
+  --gc-terracotta-500: #c85a3e;
+  --gc-terracotta-300: #e89e84;
+  --gc-terracotta-100: #f6d9c9;
+  --gc-teal-900: #163643;
+  --gc-teal-700: #2c5f7c;
+  --gc-teal-500: #4e8aa7;
+  --gc-teal-200: #cfe3ee;
+  --gc-gold-500: #d4a352;
+  --gc-gold-200: #f0dbad;
+
+  /* Semantic */
+  --gc-surface: var(--gc-paper-50);
+  --gc-surface-raised: #ffffff;
+  --gc-surface-muted: var(--gc-paper-100);
+  --gc-surface-inverse: var(--gc-ink-900);
+  --gc-text-primary: var(--gc-ink-900);
+  --gc-text-secondary: var(--gc-ink-500);
+  --gc-text-muted: var(--gc-ink-300);
+  --gc-text-on-dark: #ffffff;
+  --gc-text-accent: var(--gc-teal-700);
+  --gc-border-subtle: rgb(15 24 34 / 0.1);
+  --gc-border-strong: rgb(15 24 34 / 0.22);
+  --gc-accent: var(--gc-teal-700);
+  --gc-accent-soft: var(--gc-teal-200);
+
+  /* Spacing scale (4px base) */
+  --gc-s-1: 4px;
+  --gc-s-2: 8px;
+  --gc-s-3: 12px;
+  --gc-s-4: 16px;
+  --gc-s-5: 20px;
+  --gc-s-6: 24px;
+  --gc-s-8: 32px;
+  --gc-s-10: 40px;
+  --gc-s-12: 48px;
+  --gc-s-16: 64px;
+  --gc-s-20: 80px;
+  --gc-s-24: 96px;
+
+  /* Radii */
+  --gc-r-sm: 8px;
+  --gc-r-md: 14px;
+  --gc-r-lg: 20px;
+  --gc-r-xl: 28px;
+  --gc-r-pill: 999px;
+
+  /* Shadows */
+  --gc-shadow-sm: 0 6px 18px rgb(15 24 34 / 0.06);
+  --gc-shadow-md: 0 18px 40px rgb(15 24 34 / 0.1);
+  --gc-shadow-lg: 0 28px 64px rgb(15 24 34 / 0.18);
+
+  /* Type */
+  --gc-font-display: 'Playfair Display', 'DM Sans', system-ui, -apple-system, 'Segoe UI', serif;
+  --gc-font-body: 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* Layout */
+  --gc-page-max: 1280px;
+  --gc-page-gutter: clamp(1.25rem, 4vw, 6rem);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--gc-font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  background: var(--gc-surface);
+  color: var(--gc-text-primary);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: var(--gc-font-display);
+  font-weight: 600;
+  color: var(--gc-text-primary);
+  letter-spacing: -0.015em;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+}
+
+.gc-eyebrow {
+  font-family: var(--gc-font-body);
+  font-weight: 500;
+  font-size: 0.75rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gc-text-accent);
+  margin: 0;
+}
+
+.gc-container {
+  width: 100%;
+  max-width: var(--gc-page-max);
+  margin-inline: auto;
+  padding-inline: var(--gc-page-gutter);
+}
+
+.gc-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.95rem 1.5rem;
+  border-radius: var(--gc-r-pill);
+  font-family: var(--gc-font-body);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: transform 180ms ease, background 180ms ease, color 180ms ease,
+    border-color 180ms ease, box-shadow 180ms ease;
+
+  &:hover {
+    transform: translateY(-1px);
+  }
+}
+
+.gc-btn--primary {
+  background: var(--gc-accent);
+  color: var(--gc-text-on-dark);
+
+  &:hover {
+    background: color-mix(in srgb, var(--gc-accent) 88%, black);
+  }
+}
+
+.gc-btn--dark {
+  background: var(--gc-surface-inverse);
+  color: var(--gc-text-on-dark);
+
+  &:hover {
+    background: color-mix(in srgb, var(--gc-surface-inverse) 80%, white);
+  }
+}
+
+.gc-btn--ghost {
+  background: transparent;
+  color: var(--gc-text-primary);
+  border-color: var(--gc-border-strong);
+
+  &:hover {
+    background: var(--gc-surface-muted);
+  }
+}
+
+.gc-btn--ghost-on-dark {
+  background: transparent;
+  color: var(--gc-text-on-dark);
+  border-color: rgb(255 255 255 / 0.36);
+
+  &:hover {
+    background: rgb(255 255 255 / 0.08);
+  }
+}
+
+.gc-arrow {
+  font-weight: 600;
+  display: inline-block;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

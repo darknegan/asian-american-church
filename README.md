@@ -2,6 +2,10 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.5.
 
+## Design (Figma)
+
+Figma file URL and `fileKey` for MCP/API use: [docs/figma.md](docs/figma.md).
+
 ## Development server
 
 To start a local development server, run:

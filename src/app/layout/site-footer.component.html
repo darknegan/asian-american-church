@@ -1,0 +1,45 @@
+<footer class="footer" role="contentinfo">
+  <div class="footer__inner gc-container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <p class="footer__name">First Baptist Rogers</p>
+        <p class="footer__tag">
+          Asian American Congregation — worship, discipleship, and community with our wider church
+          family in Northwest Arkansas.
+        </p>
+      </div>
+
+      @for (col of columns; track col.title) {
+        <div class="footer__col">
+          <p class="footer__col-title">{{ col.title }}</p>
+          <ul class="footer__links">
+            @for (link of col.links; track link.label) {
+              <li>
+                @if (link.route) {
+                  <a [routerLink]="link.route" class="footer__link">{{ link.label }}</a>
+                } @else {
+                  <a [href]="link.href" class="footer__link">{{ link.label }}</a>
+                }
+              </li>
+            }
+          </ul>
+        </div>
+      }
+    </div>
+
+    <hr class="footer__divider" />
+
+    <div class="footer__legal">
+      <p class="footer__copy">
+        &copy; {{ year }} First Baptist Rogers Asian American Congregation. All rights reserved.
+      </p>
+      <ul class="footer__socials">
+        @for (s of socials; track s.label) {
+          <li>
+            <a [href]="s.href" class="footer__social">{{ s.label }}</a>
+          </li>
+        }
+      </ul>
+    </div>
+  </div>
+</footer>

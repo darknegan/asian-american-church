@@ -75,40 +75,16 @@
     </div>
   </section>
 
-  <section class="beliefs" aria-labelledby="beliefs-heading">
-    <div class="gc-container beliefs__inner">
-      <div class="beliefs__head">
-        <p class="gc-eyebrow">Foundations</p>
-        <h2 id="beliefs-heading" class="beliefs__title">About First Baptist Rogers</h2>
-        <p class="beliefs__intro">
-          First Baptist Rogers is affiliated with the
-          <strong>Southern Baptist Convention</strong> and affirms the
-          <strong>Baptist Faith and Message</strong> as a summary of our shared convictions. We
-          invite you to explore those foundations — including teaching on God, Jesus Christ, the Holy
-          Spirit, Scripture, salvation, the church, and Christian hope.
-        </p>
-        <a
-          href="https://www.fbcrogers.org/about"
-          class="gc-btn gc-btn--dark beliefs__link"
-          rel="noopener noreferrer"
-        >
-          Read more on fbcrogers.org
-          <span class="gc-arrow" aria-hidden="true">&rarr;</span>
-        </a>
-      </div>
-    </div>
-  </section>
-
   <section class="values" aria-labelledby="values-heading">
     <div class="gc-container">
       <div class="values__head">
         <div>
-          <p class="gc-eyebrow">What we value</p>
-          <h2 id="values-heading" class="values__title">Six practices that shape our common life.</h2>
+          <p class="gc-eyebrow">What we believe</p>
+          <h2 id="values-heading" class="values__title">Our faith in brief.</h2>
         </div>
         <p class="values__intro">
-          None of these are original to us — they are ancient rhythms we receive and attempt to
-          live out together.
+          These statements summarize core Christian doctrines and our practice — anchored in Scripture
+          and consistent with historic Baptist conviction.
         </p>
       </div>
 
@@ -121,6 +97,12 @@
             </div>
             <h3 class="value__title">{{ v.title }}</h3>
             <p class="value__body">{{ v.body }}</p>
+            @if (v.scriptures) {
+              <p class="value__scriptures">
+                <span class="value__scriptures-label">Scriptures for reference:</span>
+                {{ v.scriptures }}
+              </p>
+            }
           </article>
         }
       </div>
@@ -165,8 +147,8 @@
           <h2 id="leaders-heading" class="leaders__title">Shepherds who know your name.</h2>
         </div>
         <p class="leaders__intro">
-          Dr. Wes George serves as Senior Pastor of First Baptist Rogers. Our Asian American
-          Congregation is shepherded in partnership with the wider pastoral staff and elders.
+          Pastors Ger, Robert, and KFC shepherd our Asian American Congregation in partnership with
+          the wider First Baptist Rogers staff and elders.
           <a href="https://www.fbcrogers.org/about" rel="noopener noreferrer" class="leaders__intro-link"
             >Meet the full team on the church website</a
           >.
@@ -221,7 +203,7 @@
       </div>
       <figure class="closing__figure">
         <img
-          [ngSrc]="images.welcome"
+          [ngSrc]="images.comeSee"
           width="820"
           height="640"
           alt="Welcoming families at the doorway of the church"

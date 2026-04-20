@@ -17,7 +17,7 @@
     <div class="hero__content gc-container">
       <div class="hero__pill">
         <span class="hero__pill-dot" aria-hidden="true"></span>
-        Sundays · 9:30 am · Olive Street campus · Bilingual worship
+        Sundays · 9:30 am · Olive Street campus · English worship
       </div>
 
       <h1 id="hero-heading" class="hero__title">
@@ -60,22 +60,57 @@
         Browse gallery <span class="gc-arrow" aria-hidden="true">&rarr;</span>
       </a>
     </div>
-    <div class="marquee__track" role="list">
-      @for (photo of marquee; track photo.src) {
-        <figure class="marquee__tile" role="listitem">
-          <img
-            [ngSrc]="photo.src"
-            width="500"
-            height="360"
-            [alt]="photo.alt"
-            class="marquee__img"
-          />
-          <figcaption class="marquee__caption">
-            <span class="marquee__caption-dot" aria-hidden="true"></span>
-            {{ photo.label }}
-          </figcaption>
-        </figure>
-      }
+    <div
+      class="gc-container marquee__slider"
+      (mouseenter)="pauseAutoplay()"
+      (mouseleave)="resumeAutoplay()"
+    >
+      <figure class="marquee__feature">
+        <img
+          [ngSrc]="activeSlide().src"
+          width="960"
+          height="620"
+          [alt]="activeSlide().alt"
+          class="marquee__feature-img"
+        />
+        <figcaption class="marquee__feature-caption">
+          <span class="marquee__caption-dot" aria-hidden="true"></span>
+          {{ activeSlide().label }}
+        </figcaption>
+      </figure>
+
+      <aside class="marquee__panel" aria-label="Slideshow controls">
+        <p class="marquee__counter">Photo {{ activeSlideIndex() }} of {{ slideCount }}</p>
+        <h3 class="marquee__panel-title">{{ activeSlide().label }}</h3>
+        <p class="marquee__panel-copy">
+          {{ activeSlide().description }}
+        </p>
+        <div class="marquee__actions">
+          <button type="button" class="marquee__nav" (click)="previousSlide()" aria-label="Previous slide">
+            &larr;
+          </button>
+          <button type="button" class="marquee__nav" (click)="nextSlide()" aria-label="Next slide">
+            &rarr;
+          </button>
+        </div>
+        <div class="marquee__dots" aria-label="Choose slide">
+          @for (photo of marquee; track photo.src; let i = $index) {
+            <button
+              type="button"
+              class="marquee__dot"
+              [class.marquee__dot--active]="i === currentSlide()"
+              [attr.aria-label]="'Show slide ' + (i + 1) + ': ' + photo.label"
+              [attr.aria-current]="i === currentSlide() ? 'true' : null"
+              (click)="goToSlide(i)"
+            >
+              <span
+                class="marquee__dot-fill"
+                [style.width.%]="i === currentSlide() ? progressPercent() : 0"
+              ></span>
+            </button>
+          }
+        </div>
+      </aside>
     </div>
   </section>
 
@@ -102,7 +137,7 @@
         <p class="gc-eyebrow">Belonging</p>
         <h2 id="welcome-heading" class="welcome__title">A church for the whole family.</h2>
         <p class="welcome__body">
-          From bilingual liturgy to youth nights and small groups, we make room for every season
+          From Sunday worship to youth nights and small groups, we make room for every season
           of life. Whether you grew up in the church or are exploring faith for the first time,
           we&rsquo;ll save you a seat and a second bowl.
         </p>
@@ -146,6 +181,7 @@
                 height="420"
                 [alt]="card.alt"
                 class="rhythm-card__img"
+                [class.rhythm-card__img--zoomed-out]="card.zoomOutImage"
               />
             </div>
             <div class="rhythm-card__body">
@@ -159,57 +195,6 @@
             </div>
           </article>
         }
-      </div>
-    </div>
-  </section>
-
-  <section class="outreach" aria-labelledby="outreach-heading">
-    <div class="gc-container">
-      <div class="outreach__head">
-        <div>
-          <p class="gc-eyebrow">Love that moves outward</p>
-          <h2 id="outreach-heading" class="outreach__title">The city is our parish.</h2>
-          <p class="outreach__sub">
-            ESL classes, tutoring, seasonal outreaches, and partnerships with neighborhood
-            schools — hospitality as a way of life.
-          </p>
-        </div>
-        <a routerLink="/events" class="gc-btn gc-btn--dark">
-          See outreach calendar
-          <span class="gc-arrow" aria-hidden="true">&rarr;</span>
-        </a>
-      </div>
-
-      <div class="bento">
-        <figure class="bento__tile bento__tile--a">
-          <img [ngSrc]="images.outreach" width="700" height="560" alt="Volunteers tutoring local students" />
-          <figcaption>Tutoring</figcaption>
-        </figure>
-        <figure class="bento__tile bento__tile--b">
-          <img [ngSrc]="images.gallery07" width="700" height="360" alt="ESL class gathered around a table" />
-          <figcaption>ESL class</figcaption>
-        </figure>
-        <figure class="bento__tile bento__tile--c">
-          <img [ngSrc]="images.communityA" width="820" height="1100" alt="A moment on the neighborhood block" />
-          <figcaption>The neighborhood</figcaption>
-        </figure>
-
-        <blockquote class="bento__quote">
-          <span class="bento__quote-mark" aria-hidden="true">&ldquo;</span>
-          <p class="bento__quote-body">
-            I walked in looking for a church. I found a table — and a family that kept a seat
-            open for my parents when they visited from Seoul.
-          </p>
-          <footer class="bento__quote-foot">
-            <p class="bento__quote-name">Jenny P.</p>
-            <p class="bento__quote-role">Member since 2019</p>
-          </footer>
-        </blockquote>
-
-        <figure class="bento__tile bento__tile--e">
-          <img [ngSrc]="images.gallery09" width="820" height="360" alt="Community partners at an outdoor event" />
-          <figcaption>City partners</figcaption>
-        </figure>
       </div>
     </div>
   </section>

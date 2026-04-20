@@ -96,11 +96,11 @@ export class EventsComponent {
           dateLabel: 'Sunday, March 16',
           timeRange: '10:00 am',
           location: 'Sanctuary',
-          title: 'Bilingual worship & communion',
+          title: 'Sunday worship & communion',
           description:
-            'Communion Sunday, with a congregational prayer from our Korean team.',
+            'Communion Sunday, with congregational prayer and reflection.',
           imageSrc: CHURCH_IMAGES.worship,
-          alt: 'Congregation in worship during a bilingual service',
+          alt: 'Congregation in worship during a Sunday service',
         },
       ],
     },
@@ -147,7 +147,7 @@ export class EventsComponent {
           dateLabel: 'Saturday, March 22',
           timeRange: '8:30 am',
           location: 'Fellowship hall',
-          title: 'ESL breakfast',
+          title: 'Community breakfast',
           description:
             'Volunteer conversation partners needed. No experience required — just kindness.',
           imageSrc: CHURCH_IMAGES.outreach,

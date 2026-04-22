@@ -75,37 +75,70 @@
     </div>
   </section>
 
-  <section class="values" aria-labelledby="values-heading">
+  <section class="beliefs-section" aria-labelledby="beliefs-heading">
     <div class="gc-container">
-      <div class="values__head">
+      <div class="beliefs-section__head">
         <div>
           <p class="gc-eyebrow">What we believe</p>
-          <h2 id="values-heading" class="values__title">Our faith in brief.</h2>
+          <h2 id="beliefs-heading" class="beliefs-section__title">Our faith in brief.</h2>
         </div>
-        <p class="values__intro">
+        <p class="beliefs-section__intro">
           These statements summarize core Christian doctrines and our practice — anchored in Scripture
-          and consistent with historic Baptist conviction.
+          and consistent with historic Baptist conviction. Expand each belief to read supporting
+          passages, and hover any reference to see the verse in the English Standard Version.
         </p>
       </div>
 
-      <div class="values__grid">
-        @for (v of values; track v.num) {
-          <article class="value">
-            <div class="value__top">
-              <span class="value__num">{{ v.num }}</span>
-              <span class="value__dot" aria-hidden="true"></span>
+      <ul class="accordion" role="list">
+        @for (b of beliefs; track b.num) {
+          <li class="accordion__item" [class.accordion__item--open]="isBeliefOpen(b.num)">
+            <h3 class="accordion__heading">
+              <button
+                type="button"
+                class="accordion__trigger"
+                [attr.aria-expanded]="isBeliefOpen(b.num)"
+                [attr.aria-controls]="'belief-panel-' + b.num"
+                [id]="'belief-trigger-' + b.num"
+                (click)="toggleBelief(b.num)"
+              >
+                <span class="accordion__num">{{ b.num }}</span>
+                <span class="accordion__title">{{ b.title }}</span>
+                <span class="accordion__icon" aria-hidden="true"></span>
+              </button>
+            </h3>
+            <div
+              class="accordion__panel"
+              role="region"
+              [id]="'belief-panel-' + b.num"
+              [attr.aria-labelledby]="'belief-trigger-' + b.num"
+              [attr.hidden]="isBeliefOpen(b.num) ? null : ''"
+            >
+              <div class="accordion__panel-inner">
+                <p class="accordion__body">{{ b.body }}</p>
+                @if (b.references.length) {
+                  <div class="scriptures">
+                    <p class="scriptures__label">Scriptures for reference</p>
+                    <ul class="scriptures__list">
+                      @for (r of b.references; track r.ref) {
+                        <li class="scriptures__item">
+                          <span class="scripture" tabindex="0">
+                            <span class="scripture__ref">{{ r.ref }}</span>
+                            <span class="scripture__tooltip" role="tooltip">
+                              <span class="scripture__tooltip-ref">{{ r.ref }}</span>
+                              <span class="scripture__tooltip-text">{{ r.text }}</span>
+                              <span class="scripture__tooltip-src">ESV</span>
+                            </span>
+                          </span>
+                        </li>
+                      }
+                    </ul>
+                  </div>
+                }
+              </div>
             </div>
-            <h3 class="value__title">{{ v.title }}</h3>
-            <p class="value__body">{{ v.body }}</p>
-            @if (v.scriptures) {
-              <p class="value__scriptures">
-                <span class="value__scriptures-label">Scriptures for reference:</span>
-                {{ v.scriptures }}
-              </p>
-            }
-          </article>
+          </li>
         }
-      </div>
+      </ul>
     </div>
   </section>
 

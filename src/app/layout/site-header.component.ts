@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 export interface NavItem {
@@ -22,4 +22,14 @@ export class SiteHeaderComponent {
     { label: 'Events', path: '/events' },
     { label: 'Give', path: '/give' },
   ];
+
+  readonly mobileOpen = signal(false);
+
+  toggleMobile(): void {
+    this.mobileOpen.update((open) => !open);
+  }
+
+  closeMobile(): void {
+    this.mobileOpen.set(false);
+  }
 }

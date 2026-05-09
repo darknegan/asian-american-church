@@ -1,9 +1,15 @@
-.header {
+:host {
+  display: block;
   position: sticky;
   top: 0;
-  z-index: 20;
+  z-index: 50;
+}
+
+.header {
+  width: 100%;
   background: color-mix(in srgb, var(--gc-surface) 92%, transparent);
   backdrop-filter: saturate(140%) blur(14px);
+  -webkit-backdrop-filter: saturate(140%) blur(14px);
   border-bottom: 1px solid var(--gc-border-subtle);
 }
 
@@ -41,11 +47,10 @@
 }
 
 .header__nav {
-  display: none;
-
-  @media (min-width: 880px) {
-    display: block;
-  }
+  display: flex;
+  align-items: center;
+  flex: 1;
+  justify-content: center;
 }
 
 .header__list {
@@ -99,8 +104,89 @@
 }
 
 .header__cta {
+  display: flex;
+  align-items: center;
+  gap: var(--gc-s-5);
+}
+
+.header__cta-btn {
   padding: 0.6rem 1.25rem;
   font-size: 0.8125rem;
+}
+
+.header__menu-btn {
+  display: none;
+  width: 42px;
+  height: 42px;
+  background: var(--gc-surface-raised);
+  border: 1px solid var(--gc-border-subtle);
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  flex-shrink: 0;
+}
+
+.header__menu-btn span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: var(--gc-text-primary);
+  border-radius: 2px;
+  transition: transform 0.2s ease;
+}
+
+.header__mobile {
+  display: none;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px 24px 28px;
+  background: var(--gc-surface-raised);
+  border-top: 1px solid var(--gc-border-subtle);
+}
+
+.header__mobile-link {
+  color: var(--gc-text-primary);
+  font-weight: 600;
+  font-size: 16px;
+  padding-block: 6px;
+  text-decoration: none;
+  transition: color 160ms ease;
+
+  &:hover,
+  &:focus-visible {
+    color: var(--gc-accent);
+  }
+}
+
+.header__mobile-link--active {
+  color: var(--gc-teal-700);
+}
+
+.header__mobile-cta {
+  align-self: flex-start;
+  margin-top: 4px;
+}
+
+@media (max-width: 960px) {
+  .header__nav {
+    display: none;
+  }
+
+  .header__cta {
+    display: none;
+  }
+
+  .header__menu-btn {
+    display: flex;
+  }
+
+  .header__mobile.is-open {
+    display: flex;
+  }
 }
 
 @media (max-width: 640px) {
@@ -112,7 +198,7 @@
     font-size: 1.125rem;
   }
 
-  .header__cta {
+  .header__cta-btn {
     padding: 0.55rem 1rem;
   }
 }

@@ -1,9 +1,10 @@
-<header class="header" role="banner">
+<header class="header" [class.is-open]="mobileOpen()" role="banner">
   <div class="header__inner gc-container">
     <a
       class="header__brand"
       routerLink="/"
       aria-label="First Baptist Rogers — Asian American Congregation home"
+      (click)="closeMobile()"
     >
       <span class="header__title">First Baptist Rogers</span>
       <span class="header__subtitle">Asian American Congregation</span>
@@ -27,7 +28,40 @@
       </ul>
     </nav>
 
-    <a routerLink="/about" class="gc-btn gc-btn--dark header__cta">
+    <div class="header__cta">
+      <a routerLink="/about" class="gc-btn gc-btn--dark header__cta-btn">
+        Plan a visit
+        <span class="gc-arrow" aria-hidden="true">&rarr;</span>
+      </a>
+    </div>
+
+    <button
+      type="button"
+      class="header__menu-btn"
+      [attr.aria-expanded]="mobileOpen()"
+      aria-controls="mobile-links"
+      aria-label="Toggle navigation"
+      (click)="toggleMobile()"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+
+  <div id="mobile-links" class="header__mobile" [class.is-open]="mobileOpen()">
+    @for (item of navItems; track item.path) {
+      <a
+        class="header__mobile-link"
+        [routerLink]="item.path"
+        routerLinkActive="header__mobile-link--active"
+        [routerLinkActiveOptions]="{ exact: item.exact ?? false }"
+        (click)="closeMobile()"
+      >
+        {{ item.label }}
+      </a>
+    }
+    <a routerLink="/about" class="gc-btn gc-btn--dark header__mobile-cta" (click)="closeMobile()">
       Plan a visit
       <span class="gc-arrow" aria-hidden="true">&rarr;</span>
     </a>

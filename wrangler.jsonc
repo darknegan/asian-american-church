@@ -6,7 +6,9 @@
     "enabled": true
   },
   "assets": {
-    "directory": "dist/"
+    // Angular `application` builder emits browser bundles here (not `dist/` root).
+    "directory": "dist/asian-american-church/browser",
+    "not_found_handling": "single-page-application"
   },
   "compatibility_flags": [
     "nodejs_compat"
